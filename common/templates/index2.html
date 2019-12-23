@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    {% load static %}
+
+    <!-- Basic Page Needs
+  ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Библиотека: Login</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="images/favicon-16x16.png" />
+
+    <!-- <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}"> -->
+
+    <!-- Main structure css file -->
+    <!-- <link rel="stylesheet" href="css/login5-style.css"> -->
+    <link rel="stylesheet" href="{% static 'common/css/login5-style.css' %}">
+
+</head>
+
+<body>
+
+    {% if username %}
+    
+    <h1>Привет, {{ username }}! Твой возраст - {{ age }}. Твой email - {{ email }}</h1>
+    {% if github_url %}
+    <h2>Я знаю твой профиль на <a href="{{ github_url }}">github</a>!</h2>
+    {% else %}
+    <h2>Я знаю что ты зашел не через гитхаб!</h2>
+    {% endif %}
+    <p>Тут ты можешь <a href="logout">выйти</a>.</p>
+    
+    {% else %}
+    <!-- <p>Тебе нужно <a href="register">зарегистрироваться</a> или <a href="login">войти на сайт</a>!</p> -->
+
+
+    <!-- Start Preloader -->
+    <div id="preload-block">
+        <div class="square-block"></div>
+    </div>
+    <!-- Preloader End -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div
+                class="authfy-container col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+                <h1>Логин с блекджеком</h1>
+                <div class="col-sm-5 authfy-panel-left">
+                    <div class="brand-col">
+                        <div class="headline">
+                            <!-- brand-logo start -->
+                            <!-- <div class="brand-logo">
+                                <img src="images/brand-logo-white.png" width="150" alt="brand-logo">
+                            </div> -->
+                            <!-- ./brand-logo -->
+                            <p>Войти на сайт, используя социальные сети</p>
+                            <!-- social login buttons start -->
+                            <div class="row social-buttons">
+                                <div class="col-xs-4 col-sm-4 col-md-12">
+
+                                    <!-- http://127.0.0.1:8000/accounts/github/login/?process=login -->
+
+                                    <a href="/accounts/github/login/?process=login" class="btn btn-block btn-facebook">
+                                        <i class="fa fa-github"></i> <span class="hidden-xs hidden-sm">Войти с помощью
+                                            GitHub</span>
+                                    </a>
+                                </div>
+                                <!-- <div class="col-xs-4 col-sm-4 col-md-12">
+                                    <a href="#" class="btn btn-block btn-twitter">
+                                        <i class="fa fa-twitter"></i> <span class="hidden-xs hidden-sm">Signin with
+                                            twitter</span>
+                                    </a>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-12">
+                                    <a href="#" class="btn btn-block btn-google">
+                                        <i class="fa fa-google-plus"></i> <span class="hidden-xs hidden-sm">Signin with
+                                            google</span>
+                                    </a>
+                                </div> -->
+                            </div><!-- ./social-buttons -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7 authfy-panel-right">
+                    <!-- authfy-login start -->
+                    <div class="authfy-login">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="presentation" class="active"><a href="#login" data-toggle="tab">Войти</a></li>
+                            <li role="presentation"><a href="#signup" data-toggle="tab">Зарегистрироваться</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <!-- panel-login start -->
+                            <div id="login" class="authfy-panel panel-login text-center tab-pane fade in active">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <form name="loginForm" class="loginForm" method="POST">
+
+                                            {% csrf_token %}
+
+                                            <!-- <div class="form-group wrap-input">
+                                                <input type="email" class="form-control email" name="username"
+                                                    placeholder="Email address">
+                                                <span class="focus-input"></span>
+                                            </div> -->
+
+                                            
+
+
+
+
+
+
+                                            <div class="form-group wrap-input">
+                                                <input type="text" class="form-control" name="username" autofocus="" required="" id="id_username" placeholder="Username">
+                                                <span class="focus-input"></span>
+                                            </div>
+                                            
+                                            <div class="form-group wrap-input">
+                                                <div class="pwdMask">
+                                                    <input type="password" class="form-control" name="password" required="" id="id_password" placeholder="Password">
+                                                    <span class="focus-input"></span>
+                                                    <span class="fa fa-eye-slash pwd-toggle"></span>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            
+                                            <!-- start remember-row -->
+                                            <!-- <div class="row remember-row">
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <label class="checkbox text-left">
+                                                        <input type="checkbox" value="remember-me">
+                                                        <span class="label-text">Remember me</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <p class="forgotPwd">
+                                                        <a id="forget-lnk" href="#forgot-pwd" data-toggle="tab">Forgot
+                                                            password?</a>
+                                                    </p>
+                                                </div>
+                                            </div>  -->
+                                            <!-- ./remember-row -->
+
+                                            <!-- <form method="post">  
+                                                {% csrf_token %}
+                                                {{ form.as_ul }}  
+                                                <input type="submit" value="Войти">
+                                            </form> -->
+
+                                            <div class="form-group">
+                                                <button class="btn btn-lg btn-primary btn-block"
+                                                    type="submit" name="btnLogIn">Войти</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> <!-- ./panel-login -->
+
+                            <!-- panel-signup start -->
+                            <div id="signup" class="authfy-panel panel-signup text-center tab-pane fade">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <form name="signupForm" class="signupForm" method="POST">
+
+                                            {% csrf_token %}
+
+                                            <div class="form-group wrap-input">
+                                                <input type="email" class="form-control" name="email" placeholder="Email address">
+                                                <span class="focus-input"></span>
+                                            </div>
+                                            <div class="form-group wrap-input">
+                                                <input type="text" class="form-control" name="username" autofocus="" required="" id="id_username2" placeholder="Username">
+                                                <span class="focus-input"></span>
+                                            </div>
+                                            <div class="form-group wrap-input">
+                                                <div class="pwdMask">
+                                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                                    <span class="focus-input"></span>
+                                                    <span class="fa fa-eye-slash pwd-toggle"></span>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <p class="term-policy text-muted small">I agree to the <a
+                                                        href="#">privacy policy</a> and <a href="#">terms of
+                                                        service</a>.</p>
+                                            </div> -->
+                                            <div class="form-group">
+                                                <button class="btn btn-lg btn-primary btn-block"
+                                                    type="submit" name="btnSignIn">Зарегистрироваться</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> <!-- ./panel-signup -->
+                            <!-- panel-forget start -->
+                            <div id="forgot-pwd" class="authfy-panel panel-forgot tab-pane fade">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="authfy-heading">
+                                            <h3 class="auth-title">Recover your password</h3>
+                                            <p>Fill in your e-mail address below and we will send you an email with
+                                                further instructions.</p>
+                                        </div>
+                                        <form name="forgetForm" class="forgetForm" action="#" method="POST">
+                                            <div class="form-group wrap-input">
+                                                <input type="email" class="form-control" name="username"
+                                                    placeholder="Email address">
+                                                <span class="focus-input"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-lg btn-primary btn-block" type="submit">Recover
+                                                    your password</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> <!-- ./panel-forgot -->
+                        </div> <!-- ./tab-content -->
+                    </div> <!-- ./authfy-login -->
+                </div>
+            </div>
+        </div> <!-- ./row -->
+    </div> <!-- ./container -->
+
+    <!-- Javascript Files -->
+
+    <!-- initialize jQuery Library -->
+    <!-- <script src="js/jquery-2.2.4.min.js"></script> -->
+    <script src="{% static 'common/js/jquery-2.2.4.min.js' %}"></script>
+
+    <!-- for Bootstrap js -->
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+
+    <!-- Custom js-->
+    <!-- <script src="js/custom.js"></script> -->
+    <script src="{% static 'common/js/custom.js' %}"></script>
+
+    {% endif %}
+
+</body>
+
+</html>
