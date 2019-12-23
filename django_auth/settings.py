@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ['*']
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
-
 # Application definition
 
 INSTALLED_APPS = [
